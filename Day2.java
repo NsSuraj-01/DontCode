@@ -5,7 +5,6 @@ public class Day2 {
     // q1 -> left rotate the given array 'd' times
     // q2 -> remove duplicates from the given array and return the number of distinct elem
 
-    // time -> O(N), space -> O(N)
     public static void rev(int[] arr, int si, int ei) {
         while(si < ei) {
             // swap
