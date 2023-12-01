@@ -17,6 +17,7 @@ public class Day2 {
         }
     }
 
+    // time -> O(N), space -> O(1)
     public static void q1_opt(int[] arr, int n, int d) {
 
         if(d>n) {
