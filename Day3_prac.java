@@ -9,6 +9,7 @@ public class Day3_prac {
         System.out.println();
     }
 
+    // time -> O(N), space -> O(1)
     // move 0's to the right end
     public static void moveRight(int[] arr) {
         int i=0;
@@ -25,6 +26,32 @@ public class Day3_prac {
         }
 
         printArr(arr);
+    }
+
+    // time -> O(N), space -> O(1)
+    public static int maximize1s(int[] arr, int k) {
+        int n = arr.length;
+        int i=0; int maxVal = 0;
+        int flips = 0;
+
+        for(int j=0; j<n; j++) {
+            if(arr[j] == 0) {
+                flips++;
+            }
+
+            // if num of flips are greater than k
+            while(flips < k) {
+                if(arr[i] == 0) {
+                    flips--; // flipping back to 0s
+                }
+                i++;
+            }
+
+            int len = j-i+1; // len of 1s
+            maxVal = Math.max(maxVal, len);
+        }
+
+        return maxVal;
     }
 
     public static void main(String[] args) {
