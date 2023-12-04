@@ -45,7 +45,7 @@ public class Day_4 {
     }
 
 
-    // all possible combinations of sum k i.e, (A[i] + B[j] = k)
+    // 1. all possible combinations of sum k i.e, (A[i] + B[j] = k)
     // O(max(M, N)) -> M-sizeof(A), N-sizeof(B)
     public static void p1(int[] A, int[] B, int X) {
 
@@ -62,7 +62,7 @@ public class Day_4 {
         }
     }
 
-    // len of longest subArr of sum = k, given that arr contains pos,0,neg nums
+    // 2. len of longest subArr of sum = k, given that arr contains pos,0,neg nums
     // time -> O(N), space -> O(N)
     public static int p2(int[] A, int N, int K) {
 
