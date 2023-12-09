@@ -11,6 +11,7 @@ public class Day_7 {
         System.out.println();
     }
 
+    // constant space, time -> O((n+m)*log(n+m))
     public static void merge(int[] arr1, int[] arr2, int n, int m) {
         int i=n-1;
         int j=0;
