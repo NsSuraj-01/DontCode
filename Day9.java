@@ -21,6 +21,7 @@ public class Day9 {
         }
     }
 
+    // time -> O(N)
     public static List<Integer> nextPerm(int[] arr) {
         int N = arr.length;
         List<Integer> res = new ArrayList<>();

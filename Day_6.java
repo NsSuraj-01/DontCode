@@ -127,8 +127,6 @@ public class Day_6 {
                 }
             }
         }
-
-        System.out.println(res);
         Collections.sort(dist, Collections.reverseOrder());
 
         int num = 2;
@@ -150,7 +148,7 @@ public class Day_6 {
 
 //        int[] arr = {1, 2, 3, 4, -5};
         int[] arr = {-1,2,1,-4};
-        _3sum_opt(arr,arr.length, 1);
+        _3sumClosest(arr,arr.length, 1);
 
 
     }
