@@ -1,5 +1,6 @@
 package Practise;
 
+import java.util.*;
 public class Day10 {
 
     public static int merge(int[] arr, int si, int mid, int ei) {
@@ -73,13 +74,8 @@ public class Day10 {
             si++; ei--;
         }
     }
-    public static void rotate90(int[][] matrix) {
-        // rotate each row of the matrix
-        for(int[] row : matrix) {
-            rotateArr(row, 0, row.length-1);
-        }
 
-        // transpose of the matrix
+    public static void transpose(int[][] matrix) {
         for(int i=0; i<matrix.length; i++) {
             for(int j=0; j<matrix[i].length; j++) {
                 if(i > j) {
@@ -89,16 +85,111 @@ public class Day10 {
                 }
             }
         }
+    }
+
+    /*
+        input           output
+        1	2	3	    3	6	9
+        4	5	6	    2	5	8
+        7	8	9	    1	4	7
+    */
+    public static void rotate90_1(int[][] matrix) {
+
+        // 1.rotate each row of the matrix
+        for(int[] row : matrix) {
+            rotateArr(row, 0, row.length-1);
+        }
+
+        // 2.transpose of the matrix
+        transpose(matrix);
 
         printMatrix(matrix);
     }
 
-    public static void main(String[] args) {
-//        int[] arr = {468,335,1,170,225,479,359,463,465,206,146,282,328,462,492,496,443,328,437,392,105,403,154,293,383,422,217,219,396,448,227,272,39,370,413,168,300,36,395,204,312,323};
-//        System.out.println("Inversion count: " + countInv(arr, arr.length));
+    /*
+        input               output
+        1	2	3	        7	4	1
+        4	5	6	        8	5	2
+        7	8	9	        9	6	3
+    */
+    public static void rotate90_2(int[][] arr) {
+        // 1. transpose
+        transpose(arr);
 
-        int[][] matrix = { {1,2,3},{4,5,6},{7,8,9}};
-        rotate90(matrix);
+        // 2. rotate each row
+        for(int[] row : arr) {
+            rotateArr(row,0, row.length-1);
+        }
+
+        printMatrix(arr);
+    }
+
+    public static void perm(ArrayList<Integer> arr, ArrayList<Integer> res) {
+        if(arr.isEmpty()) {
+            System.out.println(res);
+            return;
+        }
+
+        for(int i=0; i<arr.size(); i++) {
+            int num = arr.get(i);
+            arr.remove(i);
+            res.add(num);
+            perm(arr, res);
+            arr.add(num);
+        }
+    }
+
+    public static void printArr(int[] arr) {
+        for(int i : arr) {
+            System.out.print(i+" ");
+        }
+        System.out.println();
+    }
+
+    public static void nextPerm(int[] perm) {
+
+        int N = perm.length;
+        // find if it is the last perm
+        int i;
+        for(i=0; i<N-1; i++) {
+            if(perm[i] < perm[i+1]) {break;}
+        }
+        if(i == N) {
+            rotateArr(perm, 0, N-1);
+            return;
+        }
+
+        // otherwise find the break point
+        int prev=0;
+        for(i=0; i<N; i++) {
+            if(perm[i] > perm[i+1]) {
+                break;
+            }
+            prev = i;
+        }
+        // find the next closest idx
+        int idx = i;
+        for(; i<N; i++) {
+            int diff = perm[idx]-perm[prev];
+            if(perm[i] - perm[prev] < diff) {
+                idx = i;
+            }
+        }
+
+        // swap the idx elem with prev elem
+        int temp = perm[prev];
+        perm[prev] = perm[idx];
+        perm[idx] = temp;
+
+        // rotate the arr from i -> N-1
+        rotateArr(perm, prev+1, idx);
+
+        printArr(perm);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,3,2};
+        nextPerm(arr);
     }
 }
 

@@ -3,10 +3,9 @@ package Practise;
 import java.util.*;
 public class Day_4 {
 
-//    3. single element in the sorted array
-
+    // given unsorted arr
     // time -> O(N)
-    public static int p3(int[] arr, int N) {
+    public static int findSingleElem(int[] arr, int N) {
         int curr = -1;
 
         for(int i=0; i<N; i++) {
@@ -20,8 +19,20 @@ public class Day_4 {
         return curr;
     }
 
+    // using ExOR logic
+    public static int findSingleElem_opt(int[] arr) {
+        int res=0;
+        for(int i : arr) {
+            res ^= i;
+        }
+
+        return res;
+    }
+
+    // 3. find single element in the sorted array
+    // except one elem all other elems appear twice
     // time -> O(logN)
-    public static int p3_opt(int[] A, int N) {
+    public static int p3(int[] A, int N) {
         int si = 1, ei = N-2;
 
 
@@ -96,7 +107,7 @@ public class Day_4 {
     }
 
     public static void main(String[] args) {
-//        int[] arr = {1,1,2,3,3,4,4,8,8};
+//        int[] arr = {1,1,2,3,3,4,4,8,8}int
 //        int N = arr.length;
 //        System.out.println(p3_opt(arr, N));
 

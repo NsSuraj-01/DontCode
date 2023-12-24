@@ -144,10 +144,12 @@ public class Day_6 {
 
     public static void main(String[] args) {
 //        int[] arr = {-1,-2,-3,-4};
+        int[] arr = {1, 2, 3, 4, -5};
+//        int[] arr = {-1,2,1,-4};
+
+
 //        System.out.println(maxSubarraySum(arr, arr.length));
 
-//        int[] arr = {1, 2, 3, 4, -5};
-        int[] arr = {-1,2,1,-4};
         _3sumClosest(arr,arr.length, 1);
 
 

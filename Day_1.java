@@ -1,8 +1,6 @@
 package Practise;
 
-import java.util.*;
-
-public class Sorting_techniques {
+public class Day_1 {
 
     public static void printArr(int[] arr) {
         for(int elem : arr) {
