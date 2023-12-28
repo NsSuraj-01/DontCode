@@ -171,6 +171,91 @@ public class Day_8 {
         System.out.println(max_profit);
     }
 
+    // big- "cbabc", small-"abc" -> ans=2
+    public static void perm(String big, String small) {
+        // sliding window approach
+        return;
+    }
+
+    public static void printMatrix(ArrayList<ArrayList<Integer>> mat, int n, int m) {
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<m; j++) {
+                System.out.print(mat.get(i).get(j) + " ");
+            }
+            System.out.println();
+        }
+    }
+    public static void zero_matrix(ArrayList<ArrayList<Integer>> mat, int n, int m) {
+
+        int col0=1;
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<m; j++) {
+                if(mat.get(i).get(j) == 0) {
+                    mat.get(i).set(0,0);
+                    if(j!=0){
+                        mat.get(0).set(j, 0);
+                    } else {
+                        col0 = 0;
+                    }
+                }
+            }
+        }
+
+        for(int i=1; i<n; i++) {
+            for(int j=1; j<m; j++) {
+                if(mat.get(0).get(j) == 0 || mat.get(i).get(0) == 0) {
+                    mat.get(i).set(j, 0);
+                }
+            }
+        }
+
+        if(mat.get(0).get(0) == 0) {
+            for(int i=1; i<m; i++) {
+                mat.get(0).set(i, 0);
+            }
+        }
+
+        if(col0 == 0) {
+//            for(ArrayList<Integer> row : mat) {
+//                row.set(0,0);
+//            }
+            for(int i=0; i<n; i++) {
+                mat.get(i).set(0,0);
+            }
+        }
+
+        printMatrix(mat, n, m);
+    }
+
+    public static void spiralMatrix(int[][] mat, int n, int m) {
+        int sr = 0, er = n-1;
+        int sc = 0, ec = m-1;
+
+        while(sr<=er && sc<=ec) {
+            // top
+            for(int i=sc; i<=ec; i++) {
+                System.out.print(mat[sr][i] +" ");
+            }
+            // right
+            for(int i=sr+1; i<=er; i++) {
+                System.out.print(mat[i][ec]+" ");
+            }
+            // bottom
+            for(int i=ec-1; i>=sc; i--) {
+                if(sr == er) {break;}
+                System.out.print(mat[er][i]+" ");
+            }
+            // left
+            for(int i=er-1; i>=sr+1; i--) {
+                if(sc == ec) {break;}
+                System.out.print(mat[i][sc]+" ");
+            }
+
+            sr++; sc++;
+            er--; ec--;
+        }
+    }
+
 
     public static void main(String[] args) {
 //        triangularPattern(5);
@@ -178,7 +263,25 @@ public class Day_8 {
 //        subArrSum3(arr, 3);
 //        ArrayList<Integer> list = new ArrayList<>(List.of(2,1,0,2,1,0,2,1));
 //        sortArray(list,list.size());
-        int[] prices = {7,1,5,4,3,6};
-        stocks(prices);
+//        int[] prices = {7,1,5,4,3,6};
+//        stocks(prices);
+
+//        ArrayList<ArrayList<Integer>> mat = new ArrayList<>(Arrays.asList(
+//                new ArrayList<>(List.of(2,4,3)),
+//                new ArrayList<>(List.of(1,0,0))
+//        ));
+//
+//        zero_matrix(mat, 2, 3);
+
+//        int[][] matrix = {  {13,32,8},
+//                            {37,14,26},
+//                            {29,16,45},
+//                            {32,23,29},
+//                            {38,24,17}};
+
+//        int[][] matrix = {{1,3,5,7},{10,11,16,20},{23,30,34,60}};
+        int[][] matrix = {{1,3,7,9},{10,12,15,17},{19,20,21,50}};
+        spiralMatrix(matrix, matrix.length, matrix[0].length);
+
     }
 }
